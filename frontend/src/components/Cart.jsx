@@ -6,7 +6,9 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 
 const Cart = () => {
-
+  const items = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [showCouponPopup, setShowCouponPopup] = useState(false);
   const [selectedCoupon, setSelectedCoupon] = useState(null);
