@@ -63,6 +63,15 @@ router.post('/payment/success', async (req, res) => {
   }
 });
 
+router.get("/orders", async (req, res) => {
+  try {
+    const orders = await Order.find();
+    res.json(orders);
+  } catch (error) {
+    console.error('Error fetching orders:', error);
+    res.status(500).json({ error: 'Failed to fetch orders' });
+  }
+});
 
 
 router.delete("/deleteorders/:id", async (req, res) => {
