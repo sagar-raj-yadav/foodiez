@@ -10,6 +10,7 @@ const RestaurantCard = ({
   avgRatingString,
   image = 'logo.png', // Default image
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <div
