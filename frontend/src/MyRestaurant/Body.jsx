@@ -12,7 +12,9 @@ const location = [
   'Bairagarh', 'Hoshangabad Road', 'Arera Colony', 'Jawahar Chowk', 'Habibganj', 'Saket Nagar',
   'Chhola Road', 'Bag Sewania', 'Malviya Nagar', 'Govindpura', 'Bairagarh Kalan', 'Bairagarh Chichli'
 ];
-
+const getRandomCost = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min; // Fixed to include max value
+};
 
 
 const Body = () => {
