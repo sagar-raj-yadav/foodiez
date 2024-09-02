@@ -18,6 +18,11 @@ router.post('/payment', async (req, res) => {
       return res.status(400).json({ error: 'No items provided for payment.' });
     }
 
+    const options = {
+      amount: amount * 100, // amount in the smallest currency unit (paise for INR)
+      currency: currency || 'INR',
+      receipt: `receipt_${Date.now()}`,
+    };
 
     const order = await razorpay.orders.create(options);
 
