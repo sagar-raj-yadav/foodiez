@@ -16,6 +16,23 @@ const RestaurantMenu = () => {
   const [hoveredItemId, setHoveredItemId] = useState(null);
 
 
+  useEffect(() => {
+    const fetchData = () => {
+      const resIdNumber =  parseInt(resId);
+      if (!resIdNumber) {
+        console.error("Invalid restaurant ID");
+        return;
+      }
+      const resData = restaurantItemsData.find(res => res.id === resIdNumber);
+      if (resData) {
+        setRestaurant(resData);
+        setMenuItems(resData.items || []); // Default to empty array if items is undefined
+      } else {
+        console.error("Restaurant not found");
+      }
+    };
+    fetchData();
+  }, [resId]);
   const handleAddToCart = (item) => {
     const cartItem = {
       id: item.id,
