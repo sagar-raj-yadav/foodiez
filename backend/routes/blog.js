@@ -1,3 +1,7 @@
+import express from 'express';
+const router=express.Router();
+import fetchUser from '../middleware/fetchUser.js';  //middleware
+import Blog from '../models/Blog.js';  //notes model
 
 //route 1
 router.post("/addblog",fetchUser,async (req,res)=>{
