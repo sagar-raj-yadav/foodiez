@@ -1,0 +1,97 @@
+/* Body.css */
+
+.container {
+  display: grid;
+  margin: 0 auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 15px;
+  border: 2px solid #28a745; /* Green border for a sleek look */
+  border-radius: 30px; /* Rounded edges */
+  width: 60%;
+  margin-right: 10px;
+  min-width: 250px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.search-input:focus {
+  border-color: #218838; /* Darker green on focus */
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.3); /* Green glow effect */
+}
+
+.search-btn {
+  padding: 10px 30px; /* Increased padding for better clickability */
+  font-size: 18px; /* Larger font size */
+  border: none;
+  border-radius: 30px; /* Rounded edges */
+  background: linear-gradient(135deg, #28a745, #218838); /* Gradient background */
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.search-btn:hover {
+  background: linear-gradient(135deg, #218838, #28a745); /* Reverse gradient on hover */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Increased shadow on hover */
+  transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.error-container {
+  color: red;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.restaurant-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+@media (min-width: 1200px) {
+  .cardsContainer {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .cardsContainer {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .cardsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .cardsContainer {
+    max-width: 500px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .cardsContainer {
+    max-width: 250px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

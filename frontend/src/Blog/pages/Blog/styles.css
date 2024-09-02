@@ -1,0 +1,114 @@
+
+
+
+
+.blog-wrap {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.blog-goBack {
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: #a9a9a9;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  display: block;
+}
+.blog-wrap header {
+  text-align: center;
+}
+
+.blog-date {
+  font-size: 0.8rem;
+  color: #a9a9a9;
+  font-weight: 500;
+}
+
+.blog-wrap img {
+  width: 100%;
+}
+
+.blog-subCategory {
+  display: flex;
+  justify-content: center;
+}
+.blog-subCategory > div {
+  margin: 1rem;
+}
+
+.blog-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.blog-cover {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-cover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.blog-desc {
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #444;
+  background-color: #f9f9f9;
+  border-left: 4px solid #ff6347;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Open Sans', sans-serif;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.blog-desc:hover {
+  background-color: #fff5f5;
+  border-color: #ff4500;
+}
+
+.recipe-heading {
+  margin-top: 2rem;
+  font-size: 2rem;
+  color: #ff6347;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+  text-transform: uppercase;
+}
+
+.recipe-desc {
+  padding: 1.5rem;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #333;
+  background-color: #fff8e1;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Merriweather', serif;
+  border-left: 4px solid #ffa726;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.recipe-desc:hover {
+  background-color: #fff3d1;
+  border-color: #ff9800;
+}
+

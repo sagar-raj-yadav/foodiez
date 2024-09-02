@@ -1,0 +1,50 @@
+/* Home.css */
+
+.cardsContainer {
+    display: grid;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  @media (min-width: 1200px) {
+    .cardsContainer {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+  
+  @media (max-width: 1199px) and (min-width: 992px) {
+    .cardsContainer {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  @media (max-width: 991px) and (min-width: 768px) {
+    .cardsContainer {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card-hide {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 767px) {
+    .cardsContainer {
+      width:300px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .card-hide {
+      display: none;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .cardsContainer {
+      width:300px;
+      gap:8px;
+      grid-template-columns:  repeat(3, 1fr);;
+    }
+    .card-hide {
+      display: none;
+    }
+  }
+  

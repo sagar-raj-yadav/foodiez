@@ -1,0 +1,52 @@
+/* Addnote.css */
+
+.addnote-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+.addnote-heading {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.addnote-input,
+.addnote-textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    box-sizing: border-box;
+}
+
+.addnote-textarea {
+    resize: vertical;
+}
+
+.addnote-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.addnote-button:hover {
+    background-color: #2563eb;
+}
+
+@media (max-width: 600px) {
+    .addnote-container {
+        padding: 15px;
+    }
+}
