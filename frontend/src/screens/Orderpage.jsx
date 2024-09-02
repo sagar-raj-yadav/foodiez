@@ -19,7 +19,67 @@ const OrderPage = () => {
     return total + price * quantity;
   }, 0);
 
-  
+  const makePayment = async () => {
+    setIsProcessing(true);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/payment`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            name: item.name,
+            quantity: item.quantity,
+            price: item.price,
+            size: item.size,
+            description: item.description,
+          })),
+          amount: totalPrice,
+          currency: 'INR',
+        }),
+      });
+
+      const { orderId } = await response.json();
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID, 
+        amount: totalPrice * 100, 
+        currency: 'INR',
+        name: 'Foodiezz',
+        description: 'Order Payment',
+        order_id: orderId,
+        handler: async (response) => {
+          const successResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/payment/success`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              razorpay_order_id: response.razorpay_order_id,
+              razorpay_payment_id: response.razorpay_payment_id,
+              razorpay_signature: response.razorpay_signature,
+              items,
+            }),
+          });
+
+          if (successResponse.ok) {
+            dispatch(moveToOrders()); // Clear the cart and move items to orders
+            navigate('/', { replace: true });
+          } else {
+            console.error('Failed to save order data');
+          }
+        },
+        prefill: {
+          name: name,
+          email: 'ram@gmail.com',
+          contact: phone,
+        },
+        theme: {
+          color: '#3399cc',
+        },
+      };
 
       const rzp1 = new window.Razorpay(options);
       rzp1.on('payment.failed', function (response) {
