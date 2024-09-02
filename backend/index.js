@@ -7,7 +7,7 @@ import mongoose from 'mongoose';
 const mongoURI = process.env.MONGO_URI;
 
 //routes
-import paymentRouter from './routes/payment.js';
+
 import user from './routes/user.js';
 import blog from './routes/blog.js';
 
