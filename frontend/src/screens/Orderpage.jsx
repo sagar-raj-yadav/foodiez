@@ -81,7 +81,18 @@ const OrderPage = () => {
         },
       };
 
-  
+      const rzp1 = new window.Razorpay(options);
+      rzp1.on('payment.failed', function (response) {
+        console.error(response.error);
+        setIsProcessing(false);
+      });
+      rzp1.open();
+    } catch (error) {
+      console.error('Payment failed:', error);
+      setIsProcessing(false);
+    }
+  };
+
   
   return (
     <>
