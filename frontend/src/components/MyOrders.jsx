@@ -6,7 +6,29 @@ import Navbar from './Navbar';
 const MyOrders = () => {
   const [allOrders, setAllOrders] = useState([]);
 
+ const fetchOrders = async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
 
+      if (response.ok) {
+        const data = await response.json();
+        setAllOrders(data);
+      } else {
+        console.error("Error fetching orders:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
 
   const deleteOrder = async (id) => {
     try {
