@@ -1,12 +1,3 @@
-import express from 'express';
-const router=express.Router();
-import User from '../models/User.js';
-import bcrypt from 'bcrypt';
-import jwt from "jsonwebtoken";
-import "dotenv/config";
-import fetchUser from '../middleware/fetchUser.js';
-//signup
-router.post('/signup',async (req,res)=>{
 
 
     const {name,email,password}=req.body;  //desctructuring name,email,password from body
