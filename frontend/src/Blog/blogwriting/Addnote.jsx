@@ -8,15 +8,7 @@ const Addnote = ({handlePopupToggle,isPopupVisible}) => {
     const { tag, setTag, title, setTitle, description, setDescription, addNote } = context;
     const navigate = useNavigate();
 
-    const handleSubmit = () => {
-        if (title && tag && description) {
-            addNote();
-            navigate('/blog');
-        } else {
-            alert('Please fill in all fields before submitting.');
-        }
-        handlePopupToggle(!isPopupVisible);
-    };
+   
 
     return (
         <div className="addnote-container">
