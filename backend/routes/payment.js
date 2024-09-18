@@ -2,7 +2,6 @@ import { Router } from 'express';
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 import Order from '../models/Order.js';
-import middleware from '../middleware/authorization.js';
 
 
 const router = Router();
@@ -65,7 +64,7 @@ router.post('/payment/success', async (req, res) => {
   }
 });
 
-router.get("/orders",middleware, async (req, res) => {
+router.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find();
     res.json(orders);
