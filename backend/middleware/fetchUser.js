@@ -1,7 +1,7 @@
 import "dotenv/config"
 import jwt from "jsonwebtoken";
 
-const fetchUser=(req,res,next)=>{
+const authorization=(req,res,next)=>{
     const token=req.header('auth-token');
 
     if(!token){
@@ -11,7 +11,7 @@ const fetchUser=(req,res,next)=>{
     try{
         const {id }=jwt.verify(token, process.env.JWT_SECRET);
         req.userId =id ;
-        console.log("fetchuser",req.userId);
+        console.log("authorized",req.userId);
         next();
     }
     catch(error){
@@ -20,4 +20,4 @@ const fetchUser=(req,res,next)=>{
     }
 }
 
-export default fetchUser;
+export default authorization;
