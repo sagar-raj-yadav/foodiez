@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Card from "../components/Card";
 import RestroCard from '../components/RestroCard/Home';
 import Shimmer from "../simmer/Shimmer";
-import foodCategory from './json data/foodCategory.json';
-import fooditems from './json data/foodData2.json';
 import './Home.css';
 
 const Home = () => {
@@ -15,14 +14,30 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Flatten the foodItems structure
-    const flattenedItems = Object.keys(fooditems).flatMap(category => 
-      fooditems[category].map(item => ({ ...item, CategoryName: category }))
-    );
-    
-    setFoodItems(flattenedItems);
-    setFoodCategory(Object.keys(fooditems)); // Now foodCategory is just the keys of fooditems
-    setIsLoading(false);
+    const fetchData = async () => {
+      try {                                                  
+        // Fetch food categories and items using axios
+        const categoryResponse = await axios.get('https://food-api-git4.onrender.com/api/category');
+        const foodDataResponse = await axios.get('https://food-api-git4.onrender.com/api/foodData');
+
+        const categoryData = categoryResponse.data;
+        const foodData = foodDataResponse.data;
+
+        // Flatten the foodItems structure
+        const flattenedItems = Object.keys(foodData).flatMap(category =>
+          foodData[category].map(item => ({ ...item, CategoryName: category }))
+        );
+
+        setFoodItems(flattenedItems);
+        setFoodCategory(Object.keys(foodData));
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   return (
@@ -35,11 +50,11 @@ const Home = () => {
         <Shimmer />
       ) : (
         <div style={styles.downcontainer}>
-          {foodCategory.map((categoryName) => (
-            <div key={categoryName}>
+          {foodCategory.map((categoryName,index) => (
+            <div key={index}>
               <div style={styles.categoryTitle}>{categoryName}</div>
               <hr />
-              <div className="row">
+              <div className="row" key={index} >
                 {foodItems
                   .filter(item => item.CategoryName === categoryName && item.name.toLowerCase().includes(searchQuery.toLowerCase()))
                   .map((filteredItem) => (
@@ -84,11 +99,6 @@ const styles = {
     fontSize: "18px",
     fontWeight: "bold",
     margin: "15px 0",
-  },
-  icon: {
-    height: '70px',
-    width: 'auto',
-    maxWidth: '80%',
   },
   fixedImageContainer: {
     position: 'fixed',
