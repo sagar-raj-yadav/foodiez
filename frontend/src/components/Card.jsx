@@ -8,6 +8,70 @@ const Card = ({ id, name, description, imgsrc, options }) => {
   const [addedToCart, setAddedToCart] = useState(false); // New state
   const dispatch = useDispatch();
 
+  const handleAddToCart = () => {
+    const item = {
+      id,
+      name,
+      description,
+      imgsrc,
+      quantity: Number(quantity),
+      size,
+      price: options[size],
+    };
+    dispatch(addToCart(item));
+    // Reset quantity and size after adding to cart
+    setQuantity(1);
+    setSize(Object.keys(options)[0]);
+    setAddedToCart(true); // Update addedToCart state
+  };
+
+  const handleIncrement = () => {
+    setQuantity((prevQuantity) => prevQuantity + 1);
+  };
+
+  const handleDecrement = () => {
+    if (quantity > 1) {
+      setQuantity((prevQuantity) => prevQuantity - 1);
+    }
+  };
+
+  let priceoptions = Object.keys(options);
+
+  return (
+    <div >
+      <div
+      style={cardStyle}
+      onMouseEnter={(e) => Object.assign(e.currentTarget.style, cardHoverStyle)}
+      onMouseLeave={(e) =>
+        Object.assign(e.currentTarget.style, cardStyle, {
+          boxShadow: '0 8px 16px rgba(0, 0, 0, 0.2)',
+          transform: 'translateY(0)',
+        })
+      }>
+        <img src={imgsrc} style={styles.cardImg} alt="..." />
+        <div>
+          <p style={{ fontSize: "18px",fontWeight:" bold" }}><u>{name}</u></p>
+          <p>{description}</p>
+          <div>
+            <select style={styles.select} onChange={(e) => setQuantity(e.target.value)}>
+              {Array.from(Array(6), (e, i) => {
+                return (
+                  <option key={i + 1} value={i + 1}>{i + 1}</option>
+                )
+              })}
+            </select>
+
+            <select style={styles.select} onChange={(e) => setSize(e.target.value)}>
+              {
+                priceoptions.map((data) => {
+                  return (
+                    <option key={data} value={data}>{data}</option>
+                  )
+                })
+              }
+            </select>
+        <p style={styles.totalPrice}>price: {options[size] * quantity}</p>  
+        <hr />
             {addedToCart ? (
               <div style={styles.increase}>
               
